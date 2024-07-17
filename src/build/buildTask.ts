@@ -23,9 +23,10 @@ import * as vscode from "vscode";
 import * as idfConf from "../idfConfiguration";
 import {
   appendIdfAndToolsToPath,
-  isBinInPath,
-  getEspIdfFromCMake,
   compareVersion,
+  getEspIdfFromCMake,
+  getSDKConfigFilePath,
+  isBinInPath,
 } from "../utils";
 import { TaskManager } from "../taskManager";
 import { selectedDFUAdapterId } from "../flash/dfu";
@@ -175,6 +176,11 @@ export class BuildTask {
         } else {
           compilerArgs.push("-S", this.currentWorkspace.fsPath);
         }
+      }
+
+      const sdkconfigFile = getSDKConfigFilePath(this.currentWorkspace);
+      if (compilerArgs.indexOf("SDKCONFIG") === -1) {
+        compilerArgs.push(`-DSDKCONFIG=${sdkconfigFile}`);
       }
 
       const sdkconfigDefaults =
