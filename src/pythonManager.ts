@@ -321,7 +321,7 @@ export async function checkPipExists(pyBinPath: string, workingDir: string) {
       error && error.message
         ? error
         : new Error("Pip is not found in current environment");
-    Logger.error(newErr.message, newErr);
+    Logger.error(newErr.message, newErr, "pythonManager checkPipExists");
   }
   return false;
 }
@@ -339,7 +339,7 @@ export async function checkVenvExists(pyBinPath: string, workingDir: string) {
       error && error.message
         ? error
         : new Error("Venv is not found in current environment");
-    Logger.error(newErr.message, newErr);
+    Logger.error(newErr.message, newErr, "pythonManager checkVenvExists");
   }
   return false;
 }
