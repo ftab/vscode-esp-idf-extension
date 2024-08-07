@@ -233,7 +233,7 @@ function updateCustomExtraVars(workspaceFolder: Uri) {
       const msg = err.message
         ? err.message
         : "Error changing idf.customExtraVars from string to object";
-      Logger.errorNotify(msg, err);
+      Logger.errorNotify(msg, err, "setupInit updateCustomExtraVars");
     }
   }
 }
